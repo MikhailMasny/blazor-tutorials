@@ -1,0 +1,33 @@
+﻿@page "/authtest"
+@inject IAuthorizationService AuthorizationService
+@attribute [Authorize]
+
+<h3>AuthTest</h3>
+
+<AuthorizeView>
+    <Authorized>
+        <h2>You can see this text</h2>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView Policy="IsAdmin">
+    <Authorized>
+        <h2>You an Admin</h2>
+    </Authorized>
+    <Authorizing>
+        Authorizing..
+    </Authorizing>
+    <NotAuthorized>
+        Only admins can see this
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="SecretRole, AnotherRole">
+    <Authorized>
+        <h2>You in SecretRole or AnotherRole</h2>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+}

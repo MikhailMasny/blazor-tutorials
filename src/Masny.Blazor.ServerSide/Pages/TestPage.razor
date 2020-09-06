@@ -2,13 +2,35 @@
 @page "/pagetest"
 @layout MyLayout
 
-<h3>TestPage</h3>
+<AuthorizeView>
+    <Authorized>
+        <h3>TestPage</h3>
 
-<ParentComponent AlertText="@_userInput" />
+        <ParentComponent AlertText="@_userInput" />
 
-<p>@_userInput</p>
-<input type="text" @bind="_userInput" @bind:event="oninput" />
+        <p>@_userInput</p>
+        <input type="text" @bind="_userInput" @bind:event="oninput" />
+    </Authorized>
+    <NotAuthorized>
+        Sorry, you not authorized
+    </NotAuthorized>
+</AuthorizeView>
 
 @code {
-    private string _userInput;
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    public string _userInput;
+    private string _userName;
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var authState = await authenticationStateTask;
+            var user = authState.User;
+            var userName = user.Identity.Name;
+        }
+    }
 }
