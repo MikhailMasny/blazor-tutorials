@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Masny.Blazor.ServerSide.Data;
+using Masny.Blazor.ServerSide.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Masny.Blazor.ServerSide.Data;
 
 namespace Masny.Blazor.ServerSide
 {
@@ -29,6 +24,10 @@ namespace Masny.Blazor.ServerSide
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            //services.AddTransient<RandomService>();
+            services.AddScoped<RandomService>();
+            //services.AddSingleton<RandomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

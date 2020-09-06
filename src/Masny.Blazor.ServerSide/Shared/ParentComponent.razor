@@ -1,6 +1,12 @@
-﻿<div class="alert alert-success">@AlertText</div>
+﻿@using Masny.Blazor.ServerSide.Services
+@inject RandomService RandomService
+
+<div class="alert alert-success">@AlertText</div>
+
+<div class="alert alert-danger">@RandomService.RandomGuid</div>
 
 <ChildComponent>TextFromBody</ChildComponent>
+
 
 @code {
     [Parameter]
