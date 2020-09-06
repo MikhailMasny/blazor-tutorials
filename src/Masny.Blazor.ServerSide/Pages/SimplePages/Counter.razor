@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@page "/counter/{start:int}"
+@inject NavigationManager NavigationManager
 @layout MainLayout
 
 <h1>Counter</h1>
@@ -7,11 +9,26 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<button class="btn btn-warning" @onclick="GoIndexPage">Go Index</button>
+
 @code {
+    [Parameter]
+    public int Start { get; set; } = 0;
+
     private int currentCount = 0;
+
+    protected override void OnInitialized()
+    {
+        currentCount = Start;
+    }
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private void GoIndexPage()
+    {
+        NavigationManager.NavigateTo("/");
     }
 }
