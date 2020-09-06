@@ -1,0 +1,8 @@
+﻿@inherits Masny.Blazor.ServerSide.Code.ChildComponentBase
+
+<div class="alert alert-info">@ChildContent</div>
+
+<div class="alert alert-@AlertTheme">
+    @IsDarkTheme.ToString()
+    <input type="checkbox" @bind="IsDarkTheme" />
+</div>
