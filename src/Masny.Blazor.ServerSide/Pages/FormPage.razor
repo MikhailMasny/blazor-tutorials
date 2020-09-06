@@ -1,0 +1,48 @@
+﻿@page "/form"
+@using Masny.Blazor.ServerSide.Data
+@using System.Text.Json
+@inject IJSRuntime JsRuntime
+
+<h3>FormPage</h3>
+
+<EditForm Model="@jobApplication" OnValidSubmit="@SubmitJobApplication">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label for="fullname">FullName</label>
+        <InputText id="fullname" @bind-Value="jobApplication.FullName" />
+        <ValidationMessage For="@(() => jobApplication.FullName)" />
+    </p>
+    <p>
+        <label for="description">Description</label>
+        <InputTextArea id="description" @bind-Value="jobApplication.Description" />
+    </p>
+    <p>
+        <label for="salary">Salary</label>
+        <InputNumber id="salary" @bind-Value="jobApplication.Salary" />
+    </p>
+    <p>
+        <label for="isopensource">Is OpenSource?</label>
+        <InputCheckbox id="isopensource" @bind-Value="jobApplication.IsOpenSource" />
+    </p>
+    <p>
+        <label for="availability">Availability</label>
+        <InputDate id="availability" @bind-Value="jobApplication.Availability" />
+    </p>
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<div>
+    <span id="resultJson"></span>
+</div>
+
+@code {
+    private JobApplication jobApplication = new JobApplication();
+
+    private async Task SubmitJobApplication()
+    {
+        await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(jobApplication));
+    }
+}
