@@ -1,0 +1,52 @@
+﻿@page "/interop"
+@inject IJSRuntime JsRuntime
+
+<h3>InteropPage</h3>
+
+<button class="btn btn-danger" @onclick="ShowAlert">Show alert</button>
+
+<input type="text" @bind="userMessage" />
+
+<button class="btn btn-warning" @onclick="ShowPromt">Show promt</button>
+
+<div>
+    <span id="spanId"></span>
+</div>
+
+<input type="text" @ref="InputToFocus" />
+
+<button class="btn btn-info" @onclick="Focus">Focus it!</button>
+
+<div>
+    Random number is: <span id="randomNumber"></span>
+</div>
+
+<button class="btn btn-light" onclick="giveMeRandomInt(100)">Randomize!</button>
+
+@code {
+    private string userMessage = string.Empty;
+    private ElementReference InputToFocus;
+
+
+    private async Task Focus()
+    {
+        await JsRuntime.InvokeVoidAsync("focusOnElement", InputToFocus);
+    }
+
+    private async Task ShowAlert()
+    {
+        await JsRuntime.InvokeVoidAsync("useAlert");
+    }
+
+    private async Task ShowPromt()
+    {
+        var response = await JsRuntime.InvokeAsync<string>("usePromt", userMessage);
+        await JsRuntime.InvokeVoidAsync("setElementTextById", "spanId", response);
+    }
+
+    [JSInvokable]
+    public static Task<int> GenerateRandomInt(int maxValue)
+    {
+        return Task.FromResult(new Random().Next(maxValue));
+    }
+}
