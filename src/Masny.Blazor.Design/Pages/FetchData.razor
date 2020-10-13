@@ -9,35 +9,33 @@
 
 @if (forecasts == null)
 {
-    <p><em>Loading...</em></p>
+    <Empty Simple />
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
+    <Table DataSource="@forecasts">
+        <Column @bind-Field="@context.Summary"></Column>
+        <Column @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable></Column>
+        <Column @bind-Field="@context.TemperatureF" Sortable ></Column>
+        <Column @bind-Field="@context.TemperatureC">
+            @{
+                var color = context.TemperatureC < 5 ? "geekblue" : "green";
+                <Tag Color="@color">@context.TemperatureC</Tag>
+
             }
-        </tbody>
-    </table>
+        </Column>
+        <ActionColumn Title="Acton">
+            <Space Size="middle">
+                <SpaceItem>
+                    <a>Delete</a>
+                </SpaceItem>
+            </Space>
+        </ActionColumn>
+    </Table>
 }
 
 @code {
-    private WeatherForecast[] forecasts;
+    WeatherForecast[] forecasts;
 
     protected override async Task OnInitializedAsync()
     {

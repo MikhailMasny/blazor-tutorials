@@ -14,11 +14,16 @@ namespace Masny.Blazor.Design.Data
         public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
         {
             var rng = new Random();
-            return Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Task.FromResult(Enumerable.Range(1, 1000).Select(index =>
             {
-                Date = startDate.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                var tempC = rng.Next(-20, 55);
+                return new WeatherForecast
+                {
+                    Date = startDate.AddDays(index),
+                    TemperatureC = tempC,
+                    TemperatureF = 32 + (int)(tempC / 0.5556),
+                    Summary = Summaries[rng.Next(Summaries.Length)]
+                };
             }).ToArray());
         }
     }

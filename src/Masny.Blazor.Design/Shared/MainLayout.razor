@@ -1,15 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+<Layout Style="min-height: 100vh;">
+    <Sider Collapsible Collapsed=@collapsed OnCollapse=@onCollapse>
+        <div class="logo" />
+        <NavMenu />
+    </Sider>
+    <Layout Class="site-layout">
+        <Content Class="site-layout-background" Style="margin: 24px 16px;padding: 24px;min-height: 280px;">
+            @Body
+        </Content>
+    </Layout>
+</Layout>
 
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-    </div>
+@code {
+    bool collapsed;
 
-    <div class="content px-4">
-        @Body
-    </div>
-</div>
+    void onCollapse(bool collapsed)
+    {
+        Console.WriteLine(collapsed);
+        this.collapsed = collapsed;
+    }
+}
