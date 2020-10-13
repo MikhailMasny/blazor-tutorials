@@ -1,0 +1,65 @@
+﻿@inherits FormCode
+
+<div class="card m-3">
+    <h4 class="card-header">Blazor WebAssembly Form Validation Example</h4>
+    <div class="card-body">
+        <EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
+            <DataAnnotationsValidator />
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Title</label>
+                    <InputSelect @bind-Value="model.Title" class="form-control">
+                        @foreach (var item in InputSelectList)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => model.Title)" />
+                </div>
+                <div class="form-group col-5">
+                    <label>First Name</label>
+                    <InputText @bind-Value="model.FirstName" class="form-control" />
+                    <ValidationMessage For="@(() => model.FirstName)" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Last Name</label>
+                    <InputText @bind-Value="model.LastName" class="form-control" />
+                    <ValidationMessage For="@(() => model.LastName)" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Date of Birth</label>
+                    <InputDate @bind-Value="model.DateOfBirth" class="form-control" />
+                    <ValidationMessage For="@(() => model.DateOfBirth)" />
+                </div>
+                <div class="form-group col">
+                    <label>Email</label>
+                    <InputText @bind-Value="model.Email" class="form-control" />
+                    <ValidationMessage For="@(() => model.Email)" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Password</label>
+                    <InputText @bind-Value="model.Password" type="password" class="form-control" />
+                    <ValidationMessage For="@(() => model.Password)" />
+                </div>
+                <div class="form-group col">
+                    <label>Confirm Password</label>
+                    <InputText @bind-Value="model.ConfirmPassword" type="password" class="form-control" />
+                    <ValidationMessage For="@(() => model.ConfirmPassword)" />
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <InputCheckbox @bind-Value="model.AcceptTerms" id="acceptTerms" class="form-check-input" />
+                <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                <ValidationMessage For="@(() => model.AcceptTerms)" />
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mr-1">Register</button>
+                <button type="reset" class="btn btn-secondary">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
