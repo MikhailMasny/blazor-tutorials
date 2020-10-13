@@ -1,0 +1,11 @@
+﻿@inherits MainCode
+
+<h3>CommunicationMainComponent</h3>
+
+<div class="container text-center my-3">
+    <MessageComponent SomeText="Component Communication" />
+    @foreach (var message in messages)
+    {
+        <div class="alert alert-sm alert-info">@message</div>
+    }
+</div>
