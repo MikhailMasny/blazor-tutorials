@@ -27,7 +27,6 @@
     private string userMessage = string.Empty;
     private ElementReference InputToFocus;
 
-
     private async Task Focus()
     {
         await JsRuntime.InvokeVoidAsync("focusOnElement", InputToFocus);

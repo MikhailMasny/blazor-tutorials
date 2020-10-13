@@ -8,11 +8,11 @@ namespace Masny.Blazor.ServerSide.Data
         [Required]
         public string FullName { get; set; }
 
-        [StringLength(500, ErrorMessage ="Desc error")]
+        [StringLength(500, ErrorMessage = "Desc error")]
         public string Description { get; set; }
 
         [Required]
-        [Range(1000, 1500, ErrorMessage ="Salary error")]
+        [Range(1000, 1500, ErrorMessage = "Salary error")]
         public int Salary { get; set; }
 
         [Required]

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -34,19 +33,19 @@ namespace Masny.Blazor.ClientSide.Helpers
                 return user == null
                     ? await ReturnError("Username or password is incorrect")
                     : await ReturnOk(new
-                {
-                    Id = user.Id,
-                    Username = user.Username,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Token = "fake-jwt-token"
-                });
+                    {
+                        Id = user.Id,
+                        Username = user.Username,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Token = "fake-jwt-token"
+                    });
             }
 
             async Task<HttpResponseMessage> GetFakeUsers()
             {
-                return !isLoggedIn() 
-                    ? await ReturnUnauthorized() 
+                return !isLoggedIn()
+                    ? await ReturnUnauthorized()
                     : await ReturnOk(users);
             }
 

@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Masny.Blazor.ClientSide.Extensions
