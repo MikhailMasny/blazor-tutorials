@@ -10,7 +10,7 @@ namespace Masny.Blazor.ClientSide.Code
     //[Authorize(Roles = "Role")]
     public class GetRequestCode : ComponentBase
     {
-        protected IEnumerable<UserResponse> Response;
+        protected IEnumerable<PostResponse> Response;
         protected string ResponseErrorMessage;
 
         [Inject]
@@ -18,7 +18,7 @@ namespace Masny.Blazor.ClientSide.Code
 
         protected override async Task OnInitializedAsync()
         {
-            using var httpResponse = await HttpClient.GetAsync("https://jsonplaceholder.typicode.com/users");
+            using var httpResponse = await HttpClient.GetAsync("https://jsonplaceholder.typicode.com/posts");
 
             if (!httpResponse.IsSuccessStatusCode)
             {
@@ -26,7 +26,7 @@ namespace Masny.Blazor.ClientSide.Code
                 return;
             }
 
-            Response = await httpResponse.Content.ReadFromJsonAsync<IEnumerable<UserResponse>>();
+            Response = await httpResponse.Content.ReadFromJsonAsync<IEnumerable<PostResponse>>();
         }
     }
 }
