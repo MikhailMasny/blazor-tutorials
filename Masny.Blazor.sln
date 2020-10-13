@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Masny.Blazor.ServerSide", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Masny.Blazor.ClientSide", "src\Masny.Blazor.ClientSide\Masny.Blazor.ClientSide.csproj", "{3FA38988-E74A-4A8A-BC52-1BF234439EE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masny.Blazor.Design", "src\Masny.Blazor.Design\Masny.Blazor.Design.csproj", "{6E2D507B-F5CB-4451-B153-DD9441D527CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3FA38988-E74A-4A8A-BC52-1BF234439EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FA38988-E74A-4A8A-BC52-1BF234439EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FA38988-E74A-4A8A-BC52-1BF234439EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E2D507B-F5CB-4451-B153-DD9441D527CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E2D507B-F5CB-4451-B153-DD9441D527CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E2D507B-F5CB-4451-B153-DD9441D527CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E2D507B-F5CB-4451-B153-DD9441D527CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
