@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Masny.Blazor.ServerSide", "src\Masny.Blazor.ServerSide\Masny.Blazor.ServerSide.csproj", "{8C99AF30-1544-49F0-BDC3-8D8677A494CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masny.Blazor.ClientSide", "src\Masny.Blazor.ClientSide\Masny.Blazor.ClientSide.csproj", "{3FA38988-E74A-4A8A-BC52-1BF234439EE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Masny.Blazor.ClientSide", "src\Masny.Blazor.ClientSide\Masny.Blazor.ClientSide.csproj", "{3FA38988-E74A-4A8A-BC52-1BF234439EE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

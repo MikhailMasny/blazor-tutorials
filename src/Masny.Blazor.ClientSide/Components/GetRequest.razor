@@ -1,0 +1,16 @@
+﻿@inherits GetRequestCode
+
+<div class="card text-center m-3">
+    <h5 class="card-header">GET Request with Error Handling</h5>
+    <div class="card-body">
+        Error: @ResponseErrorMessage
+        <br />
+        @if (!(Response is null))
+        {
+            foreach (var user in Response)
+            {
+                <span>@user?.Email</span>
+            }
+        }
+    </div>
+</div>
