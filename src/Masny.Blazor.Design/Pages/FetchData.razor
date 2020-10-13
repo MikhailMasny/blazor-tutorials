@@ -3,20 +3,23 @@
 @using Masny.Blazor.Design.Data
 @inject WeatherForecastService ForecastService
 
-<h1>Weather forecast</h1>
+<PageHeader Class="site-page-header" Title="Weather forecast" />
 
 <p>This component demonstrates fetching data from a service.</p>
 
 @if (forecasts == null)
 {
-    <Empty Simple />
+    @*<Empty Simple />*@
+    <div style="height: 100%; display: flex; justify-content: center; align-items: center;">
+        <Spin size="large" />
+    </div>
 }
 else
 {
     <Table DataSource="@forecasts">
         <Column @bind-Field="@context.Summary"></Column>
         <Column @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable></Column>
-        <Column @bind-Field="@context.TemperatureF" Sortable ></Column>
+        <Column @bind-Field="@context.TemperatureF" Sortable></Column>
         <Column @bind-Field="@context.TemperatureC">
             @{
                 var color = context.TemperatureC < 5 ? "geekblue" : "green";
@@ -27,18 +30,32 @@ else
         <ActionColumn Title="Acton">
             <Space Size="middle">
                 <SpaceItem>
-                    <a>Delete</a>
+                    <Button Type="@ButtonType.Link" OnClick="(e) => OnOpenButtonClick(e, context.Summary)">View Profile</Button>
                 </SpaceItem>
             </Space>
         </ActionColumn>
     </Table>
 }
 
+<DrawerComponent @ref="myDrawer" ParentText="@ChildText" />
+
 @code {
     WeatherForecast[] forecasts;
 
     protected override async Task OnInitializedAsync()
     {
+        await Task.Delay(5000);
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
+
+    private DrawerComponent myDrawer;
+    private string ChildText = string.Empty;
+
+    private void OnOpenButtonClick(MouseEventArgs arg, string text)
+    {
+        ChildText = text;
+        myDrawer.OpenModal();
+    }
+
+    private void OnCloseButtonClick() => myDrawer.CloseModal();
 }
